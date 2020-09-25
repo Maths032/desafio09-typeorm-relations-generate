@@ -5,13 +5,13 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class AddOrderIdToOrdersProducts1600916019914
+export default class AddProductIdToOrdersProducts1600998198647
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
       'orders_products',
       new TableColumn({
-        name: 'order_id',
+        name: 'product_id',
         type: 'uuid',
         isNullable: true,
       }),
@@ -20,18 +20,21 @@ export default class AddOrderIdToOrdersProducts1600916019914
     await queryRunner.createForeignKey(
       'orders_products',
       new TableForeignKey({
-        name: 'OrdersProductsOrder',
+        name: 'OrdersProductsProduct',
         columnNames: ['order_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'orders',
+        referencedTableName: 'products',
         onDelete: 'SET NULL',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('orders_products', 'OrdersProductsOrder');
+    await queryRunner.dropForeignKey(
+      'orders_products',
+      'OrdersProductsProduct',
+    );
 
-    await queryRunner.dropColumn('orders_products', 'order_id');
+    await queryRunner.dropColumn('orders_products', 'product_id');
   }
 }
