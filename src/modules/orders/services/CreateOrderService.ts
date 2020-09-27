@@ -75,6 +75,17 @@ class CreateOrderService {
       price: existentProducts.filter(p => p.id === product.id)[0].price,
     }));
 
+    console.log('');
+    console.log('');
+    console.log('');
+
+    console.log('');
+    console.log('console.log products: ', products);
+
+    console.log('');
+    console.log('console.log serializedProducts: ', serializedProducts);
+    console.log('');
+
     const order = await this.ordersRepository.create({
       customer: customerExists,
       products: serializedProducts,

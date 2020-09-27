@@ -15,10 +15,6 @@ export default class CreateOrdersProducts1600914550873
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
-            type: 'varchar',
-          },
-          {
             name: 'price',
             type: 'decimal',
             precision: 10,
@@ -44,6 +40,6 @@ export default class CreateOrdersProducts1600914550873
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('orders_products ');
+    await queryRunner.dropTable('orders_products');
   }
 }
